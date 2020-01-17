@@ -32,11 +32,17 @@ namespace SabfExtract
             try
             {
                 Console.WriteLine($"Opening file {fileName}");
-                var assetData = new Uasset(File.OpenRead(fileName)).GetAsset();
+                var fileIn = File.ReadAllBytes(fileName);
+                var assetData = fileIn.Take(fileIn.Length - 4).ToArray();
                 var sabfInstances = FindPattern(assetData, SABFMAGIC).ToList();
                 if (sabfInstances.Count > 1)
                 {
                     Console.WriteLine("More than one instance of sabf found! Aborting...");
+                    return;
+                }
+                else if (sabfInstances.Count == 0)
+                {
+                    Console.WriteLine("No instance of sabf found! Aborting...");
                     return;
                 }
                 var outName = $"{Path.GetFileName(fileName)}.sab";
