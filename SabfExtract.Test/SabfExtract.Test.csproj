@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SabfExtract\SabfExtract.csproj" />
+    <ProjectReference Include="..\SabfExtract\SabfMabfExtract.csproj" />
   </ItemGroup>
 
 </Project>
